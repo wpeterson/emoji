@@ -2,19 +2,19 @@ class Emoji
   def self.create type
     case type
     when :iphone
-			# The iPhone implements the Softbank Unicode private space
+      # The iPhone implements the Softbank Unicode private space
       Softbank.new
     when :softbank
       Softbank.new
-		when :docomo
-			DoCoMo.new
-		when :kddi
-			KDDI.new
-		when :au
-			# Known as "Au by KDDI"
-			KDDI.new
-		when :google
-			Google.new
+    when :docomo
+      DoCoMo.new
+    when :kddi
+      KDDI.new
+    when :au
+      # Known as "Au by KDDI"
+      KDDI.new
+    when :google
+      Google.new
     else
       raise "Not supported."
     end
@@ -24,13 +24,13 @@ class Emoji
     return [unicode.to_i(16)].pack("U")
   end
 
-	def warning(character)
-		STDERR.puts "WARNING: Emoji character \"#{character}\" not supported."
-	end
+  def warning(character)
+    STDERR.puts "WARNING: Emoji character \"#{character}\" not supported."
+  end
 	
-	def get_this_method
-	   return caller[0][/`([^']*)'/, 1]
-	end
+  def get_this_method
+    return caller[0][/`([^']*)'/, 1]
+  end
 end
 
 class DoCoMo < Emoji
