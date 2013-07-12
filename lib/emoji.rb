@@ -1,5 +1,6 @@
 class Emoji
   def self.create type
+    warn "Please note that the emoji gem is completely different in 1.0. See https://github.com/steveklabnik/emoji/releases/tag/v1.0.0 for more details."
     case type
     when :iphone
 			# The iPhone implements the Softbank Unicode private space
