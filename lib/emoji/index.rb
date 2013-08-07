@@ -15,6 +15,7 @@ module Emoji
         moji = emoji_hash['moji']
         @emoji_by_moji[moji] = emoji_hash if moji
       end
+      @emoji_moji_regex = /#{@emoji_by_moji.keys.join('|')}/
     end
 
     def find_by_moji(moji)
@@ -23,6 +24,10 @@ module Emoji
 
     def find_by_name(name)
       @emoji_by_name[name]
+    end
+
+    def unicode_moji_regex
+      @emoji_moji_regex
     end
   end
 end
