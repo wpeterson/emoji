@@ -9,7 +9,7 @@ module Emoji
   @@asset_path = nil
 
   def self.asset_host
-    @@asset_host || 'localhost'
+    @@asset_host || 'http://localhost:3000'
   end
 
   def self.asset_host=(host)
@@ -26,7 +26,7 @@ module Emoji
 
   def self.image_url_for_name(name, style = :regular)
     suffix = style == :retina ? '@2x' : ''
-    "http://#{asset_host}#{ File.join(asset_path, name) }#{suffix}.png"
+    "#{asset_host}#{ File.join(asset_path, name) }#{suffix}.png"
   end
 
   def self.image_url_for_unicode_moji(moji, style = :regular)

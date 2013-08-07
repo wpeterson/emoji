@@ -3,19 +3,19 @@ require File.absolute_path File.dirname(__FILE__) + '/test_helper'
 describe Emoji do
   describe "image_url_for_name" do
     it 'should generate url' do
-      assert_equal 'http://localhost/cyclone.png', Emoji.image_url_for_name('cyclone')
+      assert_equal 'http://localhost:3000/cyclone.png', Emoji.image_url_for_name('cyclone')
     end
   end
 
   describe "image_url_for_unicode_moji" do
     it 'should generate url' do
-      assert_equal 'http://localhost/cyclone.png', Emoji.image_url_for_unicode_moji('🌀')
+      assert_equal 'http://localhost:3000/cyclone.png', Emoji.image_url_for_unicode_moji('🌀')
     end
   end
 
   describe "asset_host" do
     it 'should default to localhost' do
-      assert_equal 'localhost', Emoji.asset_host
+      assert_equal 'http://localhost:3000', Emoji.asset_host
     end
 
     it 'should be configurable' do
@@ -44,7 +44,7 @@ describe Emoji do
 
     it 'should replace unicode moji with img tag' do
       base_string = "I ❤ Emoji"
-      assert_equal "I <img src=\"http://localhost/heart.png\"> Emoji", Emoji.replace_unicode_moji_with_images(base_string)
+      assert_equal "I <img class=\"emoji\" src=\"http://localhost:3000/heart.png\"> Emoji", Emoji.replace_unicode_moji_with_images(base_string)
     end
   end
 
