@@ -37,6 +37,17 @@ describe Emoji do
     end
   end
 
+  describe "replace_unicode_moji_with_images" do
+    it 'should escape html' do
+      assert_equal "&lt;script&gt;", Emoji.replace_unicode_moji_with_images('<script>')
+    end
+
+    it 'should replace unicode moji with img tag' do
+      base_string = "I ❤ Emoji"
+      assert_equal "I <img src=\"http://localhost/heart.png\"> Emoji", Emoji.replace_unicode_moji_with_images(base_string)
+    end
+  end
+
   def with_emoji_config(name, value)
     original_value = Emoji.send(name)
     begin

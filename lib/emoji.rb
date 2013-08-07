@@ -1,5 +1,6 @@
 require 'emoji/version'
 require 'json'
+require 'escape_utils'
 
 require 'emoji/index'
 
@@ -31,6 +32,14 @@ module Emoji
   def self.image_url_for_unicode_moji(moji, style = :regular)
     emoji = index.find_by_moji(moji)
     image_url_for_name(emoji['name'], style)
+  end
+
+  def self.replace_unicode_moji_with_images(string)
+    escaped_string = EscapeUtils.escape_html(string)
+    escaped_string.gsub!(index.unicode_moji_regex) do |moji|
+      %Q{<img src="#{ image_url_for_unicode_moji(moji) }">}
+    end
+    escaped_string
   end
 
   def self.index
