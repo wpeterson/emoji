@@ -37,7 +37,7 @@ module Emoji
   def self.replace_unicode_moji_with_images(string)
     escaped_string = EscapeUtils.escape_html(string)
     escaped_string.gsub!(index.unicode_moji_regex) do |moji|
-      %Q{<img src="#{ image_url_for_unicode_moji(moji) }">}
+      %Q{<img class="emoji" src="#{ image_url_for_unicode_moji(moji) }">}
     end
     escaped_string
   end
