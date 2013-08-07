@@ -1,5 +1,4 @@
-require "emoji/version"
+require 'emoji/version'
+require 'json'
 
-module Emoji
-  # Your code goes here...
-end
+require 'emoji/index'
