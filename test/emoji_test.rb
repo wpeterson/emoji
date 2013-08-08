@@ -42,13 +42,44 @@ describe Emoji do
       assert_equal "foo", Emoji.replace_unicode_moji_with_images('foo')
     end
 
-    it 'should escape html' do
-      assert_equal "<img class=\"emoji\" src=\"http://localhost:3000/heart.png\">&lt;script&gt;", Emoji.replace_unicode_moji_with_images('❤<script>')
+    it 'should escape html in non html_safe aware strings' do
+      replaced_string = Emoji.replace_unicode_moji_with_images('❤<script>')
+      assert_equal "<img class=\"emoji\" src=\"http://localhost:3000/heart.png\">&lt;script&gt;", replaced_string
     end
 
     it 'should replace unicode moji with img tag' do
       base_string = "I ❤ Emoji"
-      assert_equal "I <img class=\"emoji\" src=\"http://localhost:3000/heart.png\"> Emoji", Emoji.replace_unicode_moji_with_images(base_string)
+      replaced_string = Emoji.replace_unicode_moji_with_images(base_string)
+      assert_equal "I <img class=\"emoji\" src=\"http://localhost:3000/heart.png\"> Emoji", replaced_string
+    end
+
+    describe 'with html_safe buffer' do
+      it 'should escape non html_safe? strings' do
+        string = '❤<script>'
+        string.stubs(:html_safe? => false)
+
+        replaced_string = Emoji.replace_unicode_moji_with_images(string)
+
+        assert_equal "<img class=\"emoji\" src=\"http://localhost:3000/heart.png\">&lt;script&gt;", replaced_string
+      end
+
+      it 'should not escape html_safe strings' do
+        string = '❤<a href="harmless">'
+        string.stubs(:html_safe? => true)
+
+        replaced_string = Emoji.replace_unicode_moji_with_images(string)
+        
+        assert_equal "<img class=\"emoji\" src=\"http://localhost:3000/heart.png\"><a href=\"harmless\">", replaced_string
+      end
+
+      it 'should always return an html_safe string' do
+        string = '❤'
+        string.stubs(:html_safe => 'safe!')
+        replaced_string = Emoji.replace_unicode_moji_with_images(string)
+
+        assert_equal 'safe!', replaced_string
+      end
+
     end
   end
 
