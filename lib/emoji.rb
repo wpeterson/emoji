@@ -24,14 +24,13 @@ module Emoji
     @@asset_path = path
   end
 
-  def self.image_url_for_name(name, style = :regular)
-    suffix = style == :retina ? '@2x' : ''
-    "#{asset_host}#{ File.join(asset_path, name) }#{suffix}.png"
+  def self.image_url_for_name(name)
+    "#{asset_host}#{ File.join(asset_path, name) }.png"
   end
 
-  def self.image_url_for_unicode_moji(moji, style = :regular)
+  def self.image_url_for_unicode_moji(moji)
     emoji = index.find_by_moji(moji)
-    image_url_for_name(emoji['name'], style)
+    image_url_for_name(emoji['name'])
   end
 
   def self.replace_unicode_moji_with_images(string)
