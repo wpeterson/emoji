@@ -42,8 +42,9 @@ describe Emoji do
       assert_equal "foo", Emoji.replace_unicode_moji_with_images('foo')
     end
 
-    it 'should escape html' do
-      assert_equal "<img class=\"emoji\" src=\"http://localhost:3000/heart.png\">&lt;script&gt;", Emoji.replace_unicode_moji_with_images('❤<script>')
+    it 'should escape html in non html_safe aware strings' do
+      replaced_string = Emoji.replace_unicode_moji_with_images('❤<script>')
+      assert_equal "<img class=\"emoji\" src=\"http://localhost:3000/heart.png\">&lt;script&gt;", replaced_string
     end
 
     it 'should replace unicode moji with img tag' do
