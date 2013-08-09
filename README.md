@@ -59,7 +59,27 @@ Default configuration integrates with Rails, but you can change it with an initi
     # config/initializers/emoji.rb
     Emoji.asset_host = "emoji.cdn.com"
     Emoji.asset_path = '/assets/emoji'
+
+String Helper Methods:
+
+You can also 
+
+    include 'emoji/string_ext'
+
+and call methods directly on your string to return the same results:
+
+    > 'I ❤ Emoji'.with_emoji_images
+    => "I <img class=\"emoji\" src=\"http://localhost:3000/assets/emoji/heart.png\"> Emoji"
+
+    > 'heart'.image_url
+    > '❤'.image_url
+    => "http://localhost:3000/assets/emoji.heart.png"
     
+    > 'heart'.emoji_data
+    > '❤'.emoji_data
+    => {"moji"=>"❤", "name"=>"heart", "name-ja"=>"ハート", "category"=>"abstract", "unicode"=>"2764"}
+
+
 ## HTML Safety and Performance
 
 This gem uses pure ruby code for compatibility with different Ruby virtual machines.  However, there can be significant performance gains to escaping incoming HTML strings using optimized, native code in the `escape_utils` gem.
