@@ -5,23 +5,23 @@ require 'escape_utils'
 require 'emoji/index'
 
 module Emoji
-  @@asset_host = nil
-  @@asset_path = nil
+  @asset_host = nil
+  @asset_path = nil
 
   def self.asset_host
-    @@asset_host || 'http://localhost:3000'
+    @asset_host || 'http://localhost:3000'
   end
 
   def self.asset_host=(host)
-    @@asset_host = host
+    @asset_host = host
   end
 
   def self.asset_path
-    @@asset_path || '/'
+    @asset_path || '/'
   end
 
   def self.asset_path=(path)
-    @@asset_path = path
+    @asset_path = path
   end
 
   def self.image_url_for_name(name)
@@ -53,6 +53,6 @@ module Emoji
   end
 
   def self.index
-    @@index ||= Index.new
+    @index ||= Index.new
   end
 end
