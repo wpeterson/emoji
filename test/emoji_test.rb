@@ -53,6 +53,10 @@ describe Emoji do
       assert_equal "I <img class=\"emoji\" src=\"http://localhost:3000/heart.png\"> Emoji", replaced_string
     end
 
+    it 'should handle nil string' do
+      assert_equal nil, Emoji.replace_unicode_moji_with_images(nil)
+    end
+
     describe 'with html_safe buffer' do
       it 'should escape non html_safe? strings' do
         string = '❤<script>'

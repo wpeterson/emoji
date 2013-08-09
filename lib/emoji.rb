@@ -35,7 +35,9 @@ module Emoji
   end
 
   def self.replace_unicode_moji_with_images(string)
-    return string unless string.match(index.unicode_moji_regex)
+    unless string && string.match(index.unicode_moji_regex)
+      return string
+    end
 
     if string.respond_to?(:html_safe?) && string.html_safe?
       safe_string = string
