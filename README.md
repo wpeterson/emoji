@@ -17,16 +17,21 @@ And then execute:
 Or install it yourself as:
 
     $ gem install emoji
+    
+Install emoji image library assets:
+
+    $ rake emoji:install_assets
+    ====================================================================
+    = emoji image assets install
+    = Target: /Users/user/src/rails-app/app/assets/images/emoji
+    = Source: /Users/user/src/emoji/assets/images
+    ====================================================================
+    - Creating /Users/user/src/rails-app/app/assets/images/emoji...
+    - Installing assets...
 
 ## Usage
 
 You can use this gem to replace unicode emoji characters with img tags linking to the appropriate emoji image.
-
-Example configuration:
-    
-    # config/initializers/emoji.rb
-    Emoji.asset_host = ActionController::Base.asset_host
-    Emoji.asset_path = '/assets/emoji'
 
 Image Replacement APIs:
 
@@ -49,6 +54,11 @@ Emoji Library Index APIs:
     > index.find_by_moji('❤')
     => {"moji"=>"❤", "name"=>"heart", "name-ja"=>"ハート", "category"=>"abstract", "unicode"=>"2764"}
 
+Default configuration integrates with Rails, but you can change it with an initializer:
+    
+    # config/initializers/emoji.rb
+    Emoji.asset_host = "emoji.cdn.com"
+    Emoji.asset_path = '/assets/emoji'
     
 
 ## Contributing
