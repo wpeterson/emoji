@@ -4,6 +4,8 @@ require 'cgi'
 
 require 'emoji/index'
 
+require "emoji/railtie" if defined?(Rails)
+
 module Emoji
   @asset_host = nil
   @asset_path = nil
