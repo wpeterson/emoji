@@ -2,7 +2,7 @@ module Emoji
   class Index
     def initialize(emoji_list=nil)
       emoji_list ||= begin
-        emoji_json ||= File.read(File.absolute_path(File.dirname(__FILE__) + '/../../config/index.json'))
+        emoji_json = File.read(File.absolute_path(File.dirname(__FILE__) + '/../../config/index.json'))
         JSON.parse(emoji_json)
       end
       @emoji_by_name = {}
