@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require File.absolute_path File.dirname(__FILE__) + '/test_helper'
 
 describe Emoji do
