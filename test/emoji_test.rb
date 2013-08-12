@@ -86,14 +86,13 @@ describe Emoji do
 
         assert_equal "safe_buffer", replaced_string
       end
-
     end
+  end
 
-    class HtmlSafeString < String
-      def initialize(*); super; end
-      def html_safe; self; end
-      def html_safe?; end
-    end
+  class HtmlSafeString < String
+    def initialize(*); super; end
+    def html_safe; self; end
+    def html_safe?; true; end
   end
 
   def with_emoji_config(name, value)
@@ -105,4 +104,5 @@ describe Emoji do
       Emoji.send("#{name}=", original_value)
     end
   end
+
 end

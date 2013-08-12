@@ -1,6 +1,6 @@
 require 'emoji/version'
 require 'json'
-require 'escape_utils'
+require 'cgi'
 
 require 'emoji/index'
 
@@ -41,7 +41,7 @@ module Emoji
     if string.respond_to?(:html_safe?) && string.html_safe?
       safe_string = string
     else
-      safe_string = EscapeUtils.escape_html(string)
+      safe_string = CGI.escape_html(string)
     end
 
     safe_string.gsub!(index.unicode_moji_regex) do |moji|
