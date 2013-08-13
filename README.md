@@ -60,6 +60,16 @@ Default configuration integrates with Rails, but you can change it with an initi
     Emoji.asset_host = "emoji.cdn.com"
     Emoji.asset_path = '/assets/emoji'
     
+## HTML Safety and Performance
+
+This gem uses pure ruby code for compatibility with different Ruby virtual machines.  However, there can be significant performance gains to escaping incoming HTML strings using optimized, native code in the `escape_utils` gem.
+
+The emoji gem will try to use `escape_utils` if it's available, but does not require it.  [Benchmarks show a 10x-100x improvement](https://gist.github.com/wpeterson/c851be471bd91868716c) in HTML escaping performance, based on the size of the string being processed.
+
+To enable native HTML escaping, add this line to your application's Gemfile:
+
+    gem 'escape_utils'
+
 
 ## Contributing
 
