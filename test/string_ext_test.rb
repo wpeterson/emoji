@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'emoji/string_ext'
 
 describe String, 'with Emoji extensions' do
