@@ -8,7 +8,9 @@ This gem includes an image library of open-source emoji and APIs for working wit
 
 Add this line to your application's Gemfile:
 
-    gem 'emoji'
+```ruby
+gem 'emoji'
+```
 
 And then execute:
 
@@ -35,50 +37,58 @@ You can use this gem to replace unicode emoji characters with img tags linking t
 
 Image Replacement APIs:
 
-    > Emoji.replace_unicode_moji_with_images('I ❤ Emoji')
-    => "I <img class=\"emoji\" src=\"http://localhost:3000/assets/emoji/heart.png\"> Emoji"
+```ruby
+> Emoji.replace_unicode_moji_with_images('I ❤ Emoji')
+=> "I <img class=\"emoji\" src=\"http://localhost:3000/assets/emoji/heart.png\"> Emoji"
 
-    > Emoji.image_url_for_unicode_moji('❤')
-    => "http://localhost:3000/assets/emoji/heart.png"
-    
-    > Emoji.image_url_for_name('heart')
-    => "http://localhost:3000/assets/emoji/heart.png"
+> Emoji.image_url_for_unicode_moji('❤')
+=> "http://localhost:3000/assets/emoji/heart.png"
+
+> Emoji.image_url_for_name('heart')
+=> "http://localhost:3000/assets/emoji/heart.png"
+```
 
 Emoji Library Index APIs:
 
-    > index = Emoji::Index.new
-    
-    > index.find_by_name('heart')
-    => {"moji"=>"❤", "name"=>"heart", "name-ja"=>"ハート", "category"=>"abstract", "unicode"=>"2764"}
-    
-    > index.find_by_moji('❤')
-    => {"moji"=>"❤", "name"=>"heart", "name-ja"=>"ハート", "category"=>"abstract", "unicode"=>"2764"}
+```ruby
+> index = Emoji::Index.new
 
+> index.find_by_name('heart')
+=> {"moji"=>"❤", "name"=>"heart", "name-ja"=>"ハート", "category"=>"abstract", "unicode"=>"2764"}
+
+> index.find_by_moji('❤')
+=> {"moji"=>"❤", "name"=>"heart", "name-ja"=>"ハート", "category"=>"abstract", "unicode"=>"2764"}
+```
 Default configuration integrates with Rails, but you can change it with an initializer:
-    
-    # config/initializers/emoji.rb
-    Emoji.asset_host = "emoji.cdn.com"
-    Emoji.asset_path = '/assets/emoji'
+   
+```ruby 
+# config/initializers/emoji.rb
+Emoji.asset_host = "emoji.cdn.com"
+Emoji.asset_path = '/assets/emoji'
+```
 
 String Helper Methods:
 
 You can also 
 
-    include 'emoji/string_ext'
+```ruby
+include 'emoji/string_ext'
+```
 
 and call methods directly on your string to return the same results:
 
-    > 'I ❤ Emoji'.with_emoji_images
-    => "I <img class=\"emoji\" src=\"http://localhost:3000/assets/emoji/heart.png\"> Emoji"
+```ruby
+> 'I ❤ Emoji'.with_emoji_images
+=> "I <img class=\"emoji\" src=\"http://localhost:3000/assets/emoji/heart.png\"> Emoji"
 
-    > 'heart'.image_url
-    > '❤'.image_url
-    => "http://localhost:3000/assets/emoji.heart.png"
-    
-    > 'heart'.emoji_data
-    > '❤'.emoji_data
-    => {"moji"=>"❤", "name"=>"heart", "name-ja"=>"ハート", "category"=>"abstract", "unicode"=>"2764"}
+> 'heart'.image_url
+> '❤'.image_url
+=> "http://localhost:3000/assets/emoji.heart.png"
 
+> 'heart'.emoji_data
+> '❤'.emoji_data
+=> {"moji"=>"❤", "name"=>"heart", "name-ja"=>"ハート", "category"=>"abstract", "unicode"=>"2764"}
+```
 
 ## HTML Safety and Performance
 
@@ -88,8 +98,9 @@ The emoji gem will try to use `escape_utils` if it's available, but does not req
 
 To enable native HTML escaping, add this line to your application's Gemfile:
 
-    gem 'escape_utils'
-
+```ruby
+gem 'escape_utils'
+```
 
 ## Contributing
 
