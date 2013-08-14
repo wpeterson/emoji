@@ -6,8 +6,8 @@ require 'emoji/version'
 Gem::Specification.new do |spec|
   spec.name          = "emoji"
   spec.version       = Emoji::VERSION
-  spec.authors       = ["Steve Klabnik"]
-  spec.email         = ["steve@steveklabnik.com"]
+  spec.authors       = ["Steve Klabnik", "Winfield Peterson"]
+  spec.email         = ["steve@steveklabnik.com", "winfield.peterson@gmail.com"]
   spec.description   = %q{A Ruby gem. For emoji. For everyone. :heart:}
   spec.summary       = %q{A Ruby gem. For emoji. For everyone. :heart:}
   spec.homepage      = "http://github.com/steveklabnik/emoji"
