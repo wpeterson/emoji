@@ -2,7 +2,9 @@
 
 A Ruby gem. For emoji. For everyone. :heart:
 
-This gem includes an image library of open-source emoji and APIs for working with them.
+This gem exposes the [Phantom Open Emoji library](https://github.com/Genshin/PhantomOpenEmoji) unicode/image assets and APIs for working with them.
+
+Easily lookup emoji name, unicode character, or image assets and convert emoji representations.
 
 ## Installation
 
