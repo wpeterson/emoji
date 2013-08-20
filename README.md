@@ -103,6 +103,11 @@ To enable native HTML escaping, add this line to your application's Gemfile:
 ```ruby
 gem 'escape_utils'
 ```
+## Contributors: :heart:
+
+* [@mikowitz](https://github.com/mikowitz): `String` ext helpers
+* [@semanticart](https://github.com/semanticart): Cleanup/Ruby 1.9.3 support
+* [@parndt](https://github.com/parndt): README doc fixes
 
 ## Contributing
 
