@@ -95,6 +95,7 @@ describe Emoji do
     def initialize(*); super; end
     def html_safe; self; end
     def html_safe?; true; end
+    def dup; self; end
   end
 
   def with_emoji_config(name, value)

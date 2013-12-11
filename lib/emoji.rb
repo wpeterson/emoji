@@ -48,9 +48,9 @@ module Emoji
     end
 
     if string.respond_to?(:html_safe?) && string.html_safe?
-      safe_string = string
+      safe_string = string.dup
     else
-      safe_string = escape_html(string)
+      safe_string = escape_html(string.dup)
     end
 
     safe_string.gsub!(index.unicode_moji_regex) do |moji|
