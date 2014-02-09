@@ -1,5 +1,5 @@
 # Releases / Changes
 
-## 1.0.0.pre
+## 1.0.0
 
-* Initial gem pre-release
+* Initial gem release
