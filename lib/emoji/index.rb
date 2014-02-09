@@ -5,6 +5,7 @@ module Emoji
         emoji_json = File.read(File.absolute_path(File.dirname(__FILE__) + '/../../config/index.json'))
         JSON.parse(emoji_json)
       end
+      
       @emoji_by_name = {}
       @emoji_by_moji = {}
 
