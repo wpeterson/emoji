@@ -54,7 +54,7 @@ module Emoji
     end
 
     safe_string.gsub!(index.unicode_moji_regex) do |moji|
-      %Q{<img class="emoji" src="#{ image_url_for_unicode_moji(moji) }">}
+      %Q{<img alt="#{moji}" class="emoji" src="#{ image_url_for_unicode_moji(moji) }">}
     end
     safe_string = safe_string.html_safe if safe_string.respond_to?(:html_safe)
 

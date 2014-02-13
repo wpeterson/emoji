@@ -46,13 +46,13 @@ describe Emoji do
 
     it 'should escape html in non html_safe aware strings' do
       replaced_string = Emoji.replace_unicode_moji_with_images('❤<script>')
-      assert_equal "<img class=\"emoji\" src=\"http://localhost:3000/heart.png\">&lt;script&gt;", replaced_string
+      assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/heart.png\">&lt;script&gt;", replaced_string
     end
 
     it 'should replace unicode moji with img tag' do
       base_string = "I ❤ Emoji"
       replaced_string = Emoji.replace_unicode_moji_with_images(base_string)
-      assert_equal "I <img class=\"emoji\" src=\"http://localhost:3000/heart.png\"> Emoji", replaced_string
+      assert_equal "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/heart.png\"> Emoji", replaced_string
     end
 
     it 'should handle nil string' do
@@ -67,7 +67,7 @@ describe Emoji do
           Emoji.replace_unicode_moji_with_images(string)
         end
 
-        assert_equal "<img class=\"emoji\" src=\"http://localhost:3000/heart.png\">&lt;script&gt;", replaced_string
+        assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/heart.png\">&lt;script&gt;", replaced_string
       end
 
       it 'should not escape html_safe strings' do
@@ -77,7 +77,7 @@ describe Emoji do
           Emoji.replace_unicode_moji_with_images(string)
         end
         
-        assert_equal "<img class=\"emoji\" src=\"http://localhost:3000/heart.png\"><a href=\"harmless\">", replaced_string
+        assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/heart.png\"><a href=\"harmless\">", replaced_string
       end
 
       it 'should always return an html_safe string' do

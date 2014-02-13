@@ -7,7 +7,7 @@ describe String, 'with Emoji extensions' do
     it 'should replace unicode moji with an img tag' do
       base_string = "I ❤ Emoji"
       replaced_string = base_string.with_emoji_images
-      assert_equal "I <img class=\"emoji\" src=\"http://localhost:3000/heart.png\"> Emoji", replaced_string
+      assert_equal "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/heart.png\"> Emoji", replaced_string
     end
   end
 

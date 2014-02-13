@@ -41,7 +41,7 @@ Image Replacement APIs:
 
 ```ruby
 > Emoji.replace_unicode_moji_with_images('I ❤ Emoji')
-=> "I <img class=\"emoji\" src=\"http://localhost:3000/assets/emoji/heart.png\"> Emoji"
+=> "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/assets/emoji/heart.png\"> Emoji"
 
 > Emoji.image_url_for_unicode_moji('❤')
 => "http://localhost:3000/assets/emoji/heart.png"
@@ -81,7 +81,7 @@ and call methods directly on your string to return the same results:
 
 ```ruby
 > 'I ❤ Emoji'.with_emoji_images
-=> "I <img class=\"emoji\" src=\"http://localhost:3000/assets/emoji/heart.png\"> Emoji"
+=> "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/assets/emoji/heart.png\"> Emoji"
 
 > 'heart'.image_url
 > '❤'.image_url
