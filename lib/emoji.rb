@@ -43,22 +43,26 @@ module Emoji
   end
 
   def self.replace_unicode_moji_with_images(string)
-    unless string && string.match(index.unicode_moji_regex)
-      return string
+    return string unless string
+    unless string.match(index.unicode_moji_regex)
+      return safe_string(string)
     end
 
-    if string.respond_to?(:html_safe?) && string.html_safe?
-      safe_string = string.dup
-    else
-      safe_string = escape_html(string.dup)
-    end
-
+    safe_string = safe_string(string.dup)
     safe_string.gsub!(index.unicode_moji_regex) do |moji|
       %Q{<img alt="#{moji}" class="emoji" src="#{ image_url_for_unicode_moji(moji) }">}
     end
     safe_string = safe_string.html_safe if safe_string.respond_to?(:html_safe)
 
     safe_string
+  end
+
+  def self.safe_string(string)
+    if string.respond_to?(:html_safe?) && string.html_safe?
+      string
+    else
+      escape_html(string)
+    end
   end
 
   def self.escape_html(string)
