@@ -109,6 +109,7 @@ gem 'escape_utils'
 * [@mikowitz](https://github.com/mikowitz): `String` ext helpers
 * [@semanticart](https://github.com/semanticart): Cleanup/Ruby 1.9.3 support
 * [@parndt](https://github.com/parndt): README doc fixes
+* [@neuegram](https://github.com/neuegram): XSS Security Audit
 
 ## Contributing
 
