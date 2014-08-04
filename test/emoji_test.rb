@@ -126,5 +126,4 @@ describe Emoji do
       Emoji.send("#{name}=", original_value)
     end
   end
-
 end
