@@ -69,6 +69,7 @@ Default configuration integrates with Rails, but you can change it with an initi
 # config/initializers/emoji.rb
 Emoji.asset_host = "emoji.cdn.com"
 Emoji.asset_path = '/assets/emoji'
+Emoji.use_plaintext_alt_tags = true
 ```
 
 String Helper Methods:

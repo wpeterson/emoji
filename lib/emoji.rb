@@ -15,6 +15,7 @@ require "emoji/railtie" if defined?(Rails)
 module Emoji
   @asset_host = nil
   @asset_path = nil
+  @use_plaintext_alt_tags = nil
   @escaper = defined?(EscapeUtils) ? EscapeUtils : CGI
 
   def self.asset_host
@@ -33,6 +34,14 @@ module Emoji
     @asset_path = path
   end
 
+  def self.use_plaintext_alt_tags
+    @use_plaintext_alt_tags || false
+  end
+
+  def self.use_plaintext_alt_tags=(bool)
+    @use_plaintext_alt_tags = bool
+  end
+
   def self.image_url_for_name(name)
     "#{asset_host}#{ File.join(asset_path, name) }.png"
   end
@@ -40,6 +49,12 @@ module Emoji
   def self.image_url_for_unicode_moji(moji)
     emoji = index.find_by_moji(moji)
     image_url_for_name(emoji['name'])
+  end
+
+  def self.alt_tag_for_moji(moji)
+    return moji unless use_plaintext_alt_tags
+    emoji = index.find_by_moji(moji)
+    emoji['name']
   end
 
   def self.replace_unicode_moji_with_images(string)
@@ -50,7 +65,7 @@ module Emoji
 
     safe_string = safe_string(string.dup)
     safe_string.gsub!(index.unicode_moji_regex) do |moji|
-      %Q{<img alt="#{moji}" class="emoji" src="#{ image_url_for_unicode_moji(moji) }">}
+      %Q{<img alt="#{alt_tag_for_moji(moji)}" class="emoji" src="#{ image_url_for_unicode_moji(moji) }">}
     end
     safe_string = safe_string.html_safe if safe_string.respond_to?(:html_safe)
 
