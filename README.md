@@ -113,6 +113,7 @@ gem 'escape_utils'
 * [@semanticart](https://github.com/semanticart): Cleanup/Ruby 1.9.3 support
 * [@parndt](https://github.com/parndt): README doc fixes
 * [@neuegram](https://github.com/neuegram): XSS Security Audit
+* [@tumes](https://github.com/tumes): Plaintext Emoji Alt Tags
 
 ## Contributing
 
