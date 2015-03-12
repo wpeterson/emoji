@@ -39,6 +39,18 @@ describe Emoji do
     end
   end
 
+  describe "use_plaintext_alt_tags" do
+    it 'should default to false' do
+      refute Emoji.use_plaintext_alt_tags
+    end
+
+    it 'should be configurable' do
+      with_emoji_config(:use_plaintext_alt_tags, true) do
+        assert Emoji.use_plaintext_alt_tags
+      end
+    end
+  end
+
   describe "replace_unicode_moji_with_images" do
     it 'should return original string without emoji' do
       assert_equal "foo", Emoji.replace_unicode_moji_with_images('foo')
@@ -53,6 +65,14 @@ describe Emoji do
       base_string = "I ❤ Emoji"
       replaced_string = Emoji.replace_unicode_moji_with_images(base_string)
       assert_equal "I <img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/heart.png\"> Emoji", replaced_string
+    end
+
+    it 'should use plaintext alt tags if configured to do so' do
+      with_emoji_config(:use_plaintext_alt_tags, true) do
+        base_string = "I ❤ Emoji"
+        replaced_string = Emoji.replace_unicode_moji_with_images(base_string)
+        assert_equal "I <img alt=\"heart\" class=\"emoji\" src=\"http://localhost:3000/heart.png\"> Emoji", replaced_string
+      end
     end
 
     it 'should handle nil string' do
