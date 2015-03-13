@@ -20,9 +20,34 @@ describe Emoji do
       assert_equal 'http://localhost:3000', Emoji.asset_host
     end
 
-    it 'should be configurable' do
+    it 'should allow hostname only and default scheme to http' do
       with_emoji_config(:asset_host, 'emoji') do
-        assert_equal 'emoji', Emoji.asset_host
+        assert_equal 'http://emoji', Emoji.asset_host
+      end
+    end
+
+    it 'should allow protocol relative URL' do
+      with_emoji_config(:asset_host, '//emoji') do
+        assert_equal '//emoji', Emoji.asset_host
+      end
+    end
+
+    it 'should respect protocol scheme' do
+      with_emoji_config(:asset_host, 'https://emoji') do
+        assert_equal 'https://emoji', Emoji.asset_host
+      end
+    end
+
+    it 'should allow setting port' do
+      with_emoji_config(:asset_host, 'http://emoji:3000') do
+        assert_equal 'http://emoji:3000', Emoji.asset_host
+      end
+
+    end
+
+    it 'should validate hostname' do
+      assert_raises(RuntimeError) do
+        with_emoji_config(:asset_host, nil) {}
       end
     end
   end
