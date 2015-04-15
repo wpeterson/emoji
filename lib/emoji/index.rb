@@ -8,6 +8,7 @@ module Emoji
 
     def_delegator :@emoji_by_moji, :[], :find_by_moji
     def_delegator :@emoji_by_name, :[], :find_by_name
+    def_delegator :@emoji_by_unicode, :[], :find_by_unicode
 
     def initialize(emoji_list=nil)
       emoji_list ||= begin
@@ -17,6 +18,7 @@ module Emoji
 
       @emoji_by_name = {}
       @emoji_by_moji = {}
+      @emoji_by_unicode = {}
 
       emoji_list.each do |emoji_hash|
         name = emoji_hash['name']
@@ -24,6 +26,9 @@ module Emoji
 
         moji = emoji_hash['moji']
         @emoji_by_moji[moji] = emoji_hash if moji
+
+        unicode = emoji_hash['unicode']
+        @emoji_by_unicode[unicode] = emoji_hash if unicode
       end
 
       @unicode_moji_regex = /#{@emoji_by_moji.keys.join('|')}/
