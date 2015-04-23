@@ -114,6 +114,8 @@ gem 'escape_utils'
 * [@parndt](https://github.com/parndt): README doc fixes
 * [@neuegram](https://github.com/neuegram): XSS Security Audit
 * [@tumes](https://github.com/tumes): Plaintext Emoji Alt Tags
+* [@poporul](https://github.com/poporul): Emoji::Index Refactoring
+* [@dilkhush](https://github.com/dilkhush): Emoji::Index Search by Unicode
 
 ## Contributing
 
