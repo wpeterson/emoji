@@ -1,5 +1,9 @@
 # Releases / Changes
 
+## 1.0.4
+
+* Moved Homepage/repo to wpeterson/emoji
+
 ## 1.0.3
 
 * Allow empty Emoji.asset_host and more asset_host formatting support
