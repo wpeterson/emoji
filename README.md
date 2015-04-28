@@ -108,6 +108,10 @@ gem 'escape_utils'
 ```
 ## Contributors: :heart:
 
+This project was spawned from conversation at the BurlingtonRB conference between Steve/Winfield.  Together they built the initial gem.  Huge thanks to everyone else who's submitted code and work to the project.
+
+* [@steveklabnik](https://github.com/steveklabnik): Created this project and made it all happen
+* [@wpeterson](https://github.com/wpeterson): gem implementation
 * [@ryan-orr](https://github.com/ryan-orr): Granted the official `emoji` rubygems account
 * [@mikowitz](https://github.com/mikowitz): `String` ext helpers
 * [@semanticart](https://github.com/semanticart): Cleanup/Ruby 1.9.3 support
