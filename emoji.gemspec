@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["steve@steveklabnik.com", "winfield.peterson@gmail.com"]
   spec.description   = %q{A Ruby gem. For emoji. For everyone. :heart:}
   spec.summary       = %q{A Ruby gem. For emoji. For everyone. :heart:}
-  spec.homepage      = "http://github.com/steveklabnik/emoji"
+  spec.homepage      = "http://github.com/wpeterson/emoji"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
