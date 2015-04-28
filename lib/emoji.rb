@@ -11,7 +11,7 @@ end
 
 require 'emoji/index'
 
-require "emoji/railtie" if defined?(Rails)
+require 'emoji/railtie' if defined?(Rails)
 
 module Emoji
   @asset_host = nil
@@ -28,16 +28,14 @@ module Emoji
   end
 
   def self.parse_and_validate_asset_host(asset_host_spec)
-    begin
-      uri = URI.parse(asset_host_spec)
-      scheme_string = extract_uri_scheme_string(asset_host_spec, uri)
-      hostname = uri.hostname || uri.path
-      port_string = extract_port_string(uri)
-      
-      return "#{ scheme_string }#{ hostname }#{ port_string }"
-    rescue URI::InvalidURIError
-      raise 'Invalid Emoji.asset_host, should be a hostname or URL prefix'
-    end
+    uri = URI.parse(asset_host_spec)
+    scheme_string = extract_uri_scheme_string(asset_host_spec, uri)
+    hostname = uri.hostname || uri.path
+    port_string = extract_port_string(uri)
+
+    "#{ scheme_string }#{ hostname }#{ port_string }"
+  rescue URI::InvalidURIError
+    raise 'Invalid Emoji.asset_host, should be a hostname or URL prefix'
   end
 
   def self.extract_uri_scheme_string(asset_host_spec, uri)
@@ -57,7 +55,7 @@ module Emoji
     return nil if uri.port == 80 && uri.scheme == 'http'
     return nil if uri.port == 443 && uri.scheme == 'https'
 
-    return ":#{uri.port}"
+    ":#{ uri.port }"
   end
 
   def self.asset_path
@@ -77,7 +75,7 @@ module Emoji
   end
 
   def self.image_url_for_name(name)
-    "#{asset_host}#{ File.join(asset_path, name) }.png"
+    "#{ asset_host }#{ File.join(asset_path, name) }.png"
   end
 
   def self.image_url_for_unicode_moji(moji)
@@ -99,7 +97,7 @@ module Emoji
 
     safe_string = safe_string(string.dup)
     safe_string.gsub!(index.unicode_moji_regex) do |moji|
-      %Q{<img alt="#{alt_tag_for_moji(moji)}" class="emoji" src="#{ image_url_for_unicode_moji(moji) }">}
+      %(<img alt="#{ alt_tag_for_moji(moji) }" class="emoji" src="#{ image_url_for_unicode_moji(moji) }">)
     end
     safe_string = safe_string.html_safe if safe_string.respond_to?(:html_safe)
 
