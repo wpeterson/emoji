@@ -28,8 +28,12 @@ module Emoji
   end
 
   def self.parse_and_validate_asset_host(asset_host_spec)
+    unless asset_host_spec && asset_host_spec.size >= 1
+      return ''
+    end
+
     # Special Case for 'hostname:port' style URIs, not parse properly by URI.parse
-    if asset_host_spec && asset_host_spec.match(/^[^:]+:\d+$/)
+    if asset_host_spec.match(/^[^:]+:\d+$/)
       components = asset_host_spec.split(':')
       scheme_string = 'http://'
       hostname = components.first

@@ -7,6 +7,12 @@ describe Emoji do
     it 'should generate url' do
       assert_equal 'http://localhost:3000/cyclone.png', Emoji.image_url_for_name('cyclone')
     end
+
+    it 'should allow empty asset_host' do
+      with_emoji_config(:asset_host, '') do
+        assert_equal '/cyclone.png', Emoji.image_url_for_name('cyclone')
+      end
+    end
   end
 
   describe "image_url_for_unicode_moji" do
@@ -51,9 +57,12 @@ describe Emoji do
 
     end
 
-    it 'should validate hostname' do
-      assert_raises(RuntimeError) do
-        with_emoji_config(:asset_host, nil) {}
+    it 'should coerce nil/empty URI' do
+      with_emoji_config(:asset_host, nil) do
+        assert_equal '', Emoji.asset_host
+      end
+      with_emoji_config(:asset_host, '') do
+        assert_equal '', Emoji.asset_host
       end
     end
   end
