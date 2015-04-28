@@ -1,5 +1,9 @@
 # Releases / Changes
 
+## 1.0.3
+
+* Allow empty Emoji.asset_host and more asset_host formatting support
+
 ## 1.0.2
 
 * Improved Emoji.asset_host configuration/handling
