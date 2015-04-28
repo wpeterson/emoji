@@ -20,6 +20,12 @@ describe Emoji do
       assert_equal 'http://localhost:3000', Emoji.asset_host
     end
 
+    it 'should allow hostname and port simple' do
+      with_emoji_config(:asset_host, 'emoji:3000') do
+        assert_equal 'http://emoji:3000', Emoji.asset_host
+      end
+    end
+
     it 'should allow hostname only and default scheme to http' do
       with_emoji_config(:asset_host, 'emoji') do
         assert_equal 'http://emoji', Emoji.asset_host

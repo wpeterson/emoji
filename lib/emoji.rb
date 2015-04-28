@@ -28,16 +28,27 @@ module Emoji
   end
 
   def self.parse_and_validate_asset_host(asset_host_spec)
-    begin
-      uri = URI.parse(asset_host_spec)
+    # Special Case for 'hostname:port' style URIs, not parse properly by URI.parse
+    if asset_host_spec && asset_host_spec.match(/^[^:]+:\d+$/)
+      components = asset_host_spec.split(':')
+      scheme_string = 'http://'
+      hostname = components.first
+      port_string = ":#{components.last}"
+    else
+      uri = parse_asset_host_uri(asset_host_spec)
       scheme_string = extract_uri_scheme_string(asset_host_spec, uri)
       hostname = uri.hostname || uri.path
       port_string = extract_port_string(uri)
+    end
       
-      return "#{ scheme_string }#{ hostname }#{ port_string }"
+     "#{ scheme_string }#{ hostname }#{ port_string }"
+  end
+
+  def self.parse_asset_host_uri(asset_host_spec)
+    URI.parse(asset_host_spec)
+
     rescue URI::InvalidURIError
       raise 'Invalid Emoji.asset_host, should be a hostname or URL prefix'
-    end
   end
 
   def self.extract_uri_scheme_string(asset_host_spec, uri)
