@@ -62,6 +62,9 @@ Emoji Library Index APIs:
 
 > index.find_by_moji('❤')
 => {"moji"=>"❤", "name"=>"heart", "name-ja"=>"ハート", "category"=>"abstract", "unicode"=>"2764"}
+
+> index.find_by_unicode('2764')
+=> {"moji"=>"❤", "name"=>"heart", "name-ja"=>"ハート", "category"=>"abstract", "unicode"=>"2764"}
 ```
 Default configuration integrates with Rails, but you can change it with an initializer:
    
