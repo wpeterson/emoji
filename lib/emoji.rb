@@ -28,9 +28,12 @@ module Emoji
   end
 
   def self.parse_and_validate_asset_host(asset_host_spec)
-    unless asset_host_spec && asset_host_spec.size >= 1
-      return ''
+    return '' unless asset_host_spec
+    return asset_host_spec if asset_host_spec.respond_to?(:call)
+    unless asset_host_spec.kind_of?(String)
+      raise 'Invalid Emoji.asset_host, should be a hostname or URL prefix'
     end
+    return '' unless asset_host_spec.size >= 1
 
     # Special Case for 'hostname:port' style URIs, not parse properly by URI.parse
     if asset_host_spec.match(/^[^:]+:\d+$/)
@@ -91,8 +94,16 @@ module Emoji
     @use_plaintext_alt_tags = bool
   end
 
+  def self.asset_host_for_asset(asset_path)
+    return asset_host if asset_host.kind_of?(String)
+
+    asset_host.call(asset_path)
+  end
+
   def self.image_url_for_name(name)
-    "#{asset_host}#{ File.join(asset_path, name) }.png"
+    path = "#{ File.join(asset_path, name) }.png"
+    host = asset_host_for_asset(path)
+    "#{host}#{path}"
   end
 
   def self.image_url_for_unicode_moji(moji)

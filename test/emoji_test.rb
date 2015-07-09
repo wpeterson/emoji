@@ -13,6 +13,12 @@ describe Emoji do
         assert_equal '/cyclone.png', Emoji.image_url_for_name('cyclone')
       end
     end
+
+    it 'should use proc asset_host' do
+      with_emoji_config(:asset_host, lambda {|path| 'http://proc.com' }) do
+        assert_equal 'http://proc.com/cyclone.png', Emoji.image_url_for_name('cyclone')
+      end
+    end
   end
 
   describe "image_url_for_unicode_moji" do
@@ -63,6 +69,13 @@ describe Emoji do
       end
       with_emoji_config(:asset_host, '') do
         assert_equal '', Emoji.asset_host
+      end
+    end
+
+    it 'should allow proc' do
+      asset_proc = lambda {|path| "proc.com"}
+      with_emoji_config(:asset_host, asset_proc) do
+        assert_equal asset_proc, Emoji.asset_host
       end
     end
   end
