@@ -1,5 +1,9 @@
 # Releases / Changes
 
+## 1.0.5
+
+* Adds support for dynamic Emoji.asset_host as a proc (ala Rails.asset_host)
+
 ## 1.0.4
 
 * Moved Homepage/repo to wpeterson/emoji
