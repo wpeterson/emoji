@@ -98,6 +98,17 @@ and call methods directly on your string to return the same results:
 => {"moji"=>"❤", "name"=>"heart", "name-ja"=>"ハート", "category"=>"abstract", "unicode"=>"2764"}
 ```
 
+## Emoji Asset host
+By default, if used with Rails this gem will inherit Rails configured `Rails.asset_host`.  Otherwise, you will need to configure the `Emoji.asset_host` as a string URL or a lambda/proc.
+
+```ruby
+# String URL
+Emoji.asset_host = 'http://your.com'
+
+# Custom Host Proc, takes asset path as a param
+Emoji.asset_host = lambda {|path| path.size % 2 == 0 ? 'http://even.com' : 'http://odd.com'}
+```
+
 ## HTML Safety and Performance
 
 This gem uses pure ruby code for compatibility with different Ruby virtual machines.  However, there can be significant performance gains to escaping incoming HTML strings using optimized, native code in the `escape_utils` gem.
