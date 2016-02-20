@@ -1,7 +1,7 @@
 # Emoji
 [![Build Status](https://travis-ci.org/wpeterson/emoji.svg?branch=master)](https://travis-ci.org/wpeterson/emoji)
 
-A Ruby gem. For emojis. For everyone. :heart:
+A Ruby gem. For emoji. For everyone. :heart:
 
 This gem exposes the [Phantom Open Emoji library](https://github.com/Genshin/PhantomOpenEmoji) unicode/image assets and APIs for working with them.
 
