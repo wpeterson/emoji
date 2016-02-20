@@ -13,9 +13,9 @@ Easily look up emoji's name, unicode character, or image assets and convert it i
   - [Image Replacement APIs](#image-replacement-apis)
   - [Emoji Library Index APIs](#emoji-library-index-apis)
   - [String Helper Methods](#string-helper-methods)
-- [Emoji Asset Host](#emoji-asset-hot)
+- [Emoji Asset Host](#emoji-asset-host)
 - [HTML Safety and Performance](#html-safety-and-performance)
-- [Contributors :heart:](#contributors)
+- [Contributors :heart:](#contributors-heart)
 - [Contributing](#contributing)
 
 
