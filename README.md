@@ -91,7 +91,7 @@ Emoji.use_plaintext_alt_tags = true
 You can also include the string helper module
 
 ```ruby
-include 'emoji/string_ext'
+require 'emoji/string_ext'
 ```
 
 and call methods directly on your string to return the same results:
