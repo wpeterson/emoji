@@ -1,5 +1,9 @@
 # Releases / Changes
 
+## 1.0.6
+
+* Adds `Emoji.replace_unicode_moji_with_name()` for Markdown
+
 ## 1.0.5
 
 * Adds support for dynamic Emoji.asset_host as a proc (ala Rails.asset_host)
