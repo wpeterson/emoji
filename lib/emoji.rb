@@ -47,7 +47,8 @@ module Emoji
       hostname = uri.hostname || uri.path
       port_string = extract_port_string(uri)
     end
-     "#{ scheme_string }#{ hostname }#{ port_string }"
+
+    "#{ scheme_string }#{ hostname }#{ port_string }"
   end
 
   def self.parse_asset_host_uri(asset_host_spec)
