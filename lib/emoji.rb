@@ -47,7 +47,6 @@ module Emoji
       hostname = uri.hostname || uri.path
       port_string = extract_port_string(uri)
     end
-      
      "#{ scheme_string }#{ hostname }#{ port_string }"
   end
 
@@ -126,6 +125,22 @@ module Emoji
     safe_string = safe_string(string.dup)
     safe_string.gsub!(index.unicode_moji_regex) do |moji|
       %Q{<img alt="#{alt_tag_for_moji(moji)}" class="emoji" src="#{ image_url_for_unicode_moji(moji) }">}
+    end
+    safe_string = safe_string.html_safe if safe_string.respond_to?(:html_safe)
+
+    safe_string
+  end
+
+  def self.replace_unicode_moji_with_name(string)
+    return string unless string
+    unless string.match(index.unicode_moji_regex)
+      return safe_string(string)
+    end
+
+    safe_string = safe_string(string.dup)
+    safe_string.gsub!(index.unicode_moji_regex) do |moji|
+      emoji = index.find_by_moji(moji)
+      %Q{:#{emoji['name']}:}
     end
     safe_string = safe_string.html_safe if safe_string.respond_to?(:html_safe)
 
