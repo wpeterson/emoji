@@ -104,6 +104,16 @@ describe Emoji do
     end
   end
 
+  describe 'replace_unicode_moji_with_name' do
+    it 'should return original string without emoji' do
+      assert_equal "foo", Emoji.replace_unicode_moji_with_name('foo')
+    end
+    it 'should replace an emoji with its ascii name' do
+      base_string = "I ❤ Emoji"
+      assert_equal "I :heart: Emoji", Emoji.replace_unicode_moji_with_name(base_string)
+    end
+  end
+
   describe "replace_unicode_moji_with_images" do
     it 'should return original string without emoji' do
       assert_equal "foo", Emoji.replace_unicode_moji_with_images('foo')
@@ -159,7 +169,7 @@ describe Emoji do
         replaced_string = string.stub(:html_safe?, true) do
           Emoji.replace_unicode_moji_with_images(string)
         end
-        
+
         assert_equal "<img alt=\"❤\" class=\"emoji\" src=\"http://localhost:3000/heart.png\"><a href=\"harmless\">", replaced_string
       end
 
