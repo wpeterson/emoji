@@ -145,6 +145,7 @@ This project was spawned from conversation at the [BurlingtonRB conference](http
 * [@tumes](https://github.com/tumes): Plaintext Emoji Alt Tags
 * [@poporul](https://github.com/poporul): Emoji::Index Refactoring
 * [@dilkhush](https://github.com/dilkhush): Emoji::Index Search by Unicode
+* [@cromulus](https://github.com/cromulus): Emoji.replace_unicode_moji_with_name() API
 
 ## Contributing
 
