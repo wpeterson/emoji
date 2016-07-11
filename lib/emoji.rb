@@ -119,14 +119,22 @@ module Emoji
 
   def self.replace_markdown_moji_with_unicode(string)
     return string unless string
-    string.gsub!(/:\S+:/) do |m|
-      # puts m[1..-2]
-      # puts index.find_by_name(m[1,-2])
-      emoji = index.find_by_name(m[1..-2])
+    string.gsub!(/:\S+:/) do |moji|
+      emoji = index.find_by_name(moji[1..-2])
       emoji['moji']
     end
     string
   end
+
+  def self.replace_moji_with_markdown(string)
+    return string unless string
+    string.gsub!(index.unicode_moji_regex) do |moji|
+      emoji = index.find_by_moji(moji)
+      ':' + emoji['name'] + ':'
+    end
+    string
+  end
+
 
   def self.replace_unicode_moji_with_images(string)
     return string unless string
