@@ -130,22 +130,6 @@ describe Emoji do
     end
   end
 
-  describe "replace_moji_with_markdown" do
-    it 'should return the original string without emoji' do
-      assert_equal "foo", Emoji.replace_moji_with_markdown('foo')
-    end
-
-    it 'should replace the unicode moji with markdown moji names' do
-      base_string = "I ❤ Emoji"
-      assert_equal "I :heart: Emoji", Emoji.replace_moji_with_markdown(base_string)
-    end
-
-    it 'should be able to replace multiple moji in one go' do
-      base_string = "I ❤ ❤ Emoji"
-      assert_equal "I :heart: :heart: Emoji", Emoji.replace_moji_with_markdown(base_string)
-    end
-  end
-
   describe "replace_unicode_moji_with_images" do
     it 'should return original string without emoji' do
       assert_equal "foo", Emoji.replace_unicode_moji_with_images('foo')
