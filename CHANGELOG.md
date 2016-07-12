@@ -1,5 +1,11 @@
 # Releases / Changes
 
+## 1.0.7
+
+* Adds `Emoji.replace_named_moji_with_unicode()` for Markdown
+* Use configured Rails asset `path_prefix` for `Emoji.asset_path` prefix
+
+
 ## 1.0.6
 
 * Adds `Emoji.replace_unicode_moji_with_name()` for Markdown
