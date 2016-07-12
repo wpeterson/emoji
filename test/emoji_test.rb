@@ -50,6 +50,12 @@ describe Emoji do
       end
     end
 
+    it 'should allow protocol relative UR with port' do
+      with_emoji_config(:asset_host, '//emoji:3000') do
+        assert_equal '//emoji:3000', Emoji.asset_host
+      end
+    end
+
     it 'should respect protocol scheme' do
       with_emoji_config(:asset_host, 'https://emoji') do
         assert_equal 'https://emoji', Emoji.asset_host
