@@ -4,7 +4,7 @@ module Emoji
   class Index
     extend Forwardable
 
-    attr_reader :unicode_moji_regex
+    attr_reader :unicode_moji_regex, :named_moji_regex
 
     def_delegator :@emoji_by_moji, :[], :find_by_moji
     def_delegator :@emoji_by_name, :[], :find_by_name
@@ -31,7 +31,9 @@ module Emoji
         @emoji_by_unicode[unicode] = emoji_hash if unicode
       end
 
-      @unicode_moji_regex = /#{@emoji_by_moji.keys.join('|')}/
+      annotated_name_strings = @emoji_by_name.keys.map{|name| ":#{name}:" }
+      @named_moji_regex = /#{ annotated_name_strings.join('|') }/
+      @unicode_moji_regex = /#{ @emoji_by_moji.keys.join('|') }/
     end
   end
 end

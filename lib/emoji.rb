@@ -132,6 +132,24 @@ module Emoji
     safe_string
   end
 
+  def self.replace_named_moji_with_unicode(string)
+    return string unless string
+    unless string.match(index.named_moji_regex)
+      return safe_string(string)
+    end
+
+    safe_string = safe_string(string.dup)
+    safe_string.gsub!(index.named_moji_regex) do |name_exp|
+      name = name_exp[1..-2] # Convert :heart: to heart, strips first/last chars
+      emoji = index.find_by_name(name)
+
+      emoji['moji']
+    end
+    safe_string = safe_string.html_safe if safe_string.respond_to?(:html_safe)
+
+    safe_string
+  end
+
   def self.replace_unicode_moji_with_name(string)
     return string unless string
     unless string.match(index.unicode_moji_regex)
@@ -141,7 +159,7 @@ module Emoji
     safe_string = safe_string(string.dup)
     safe_string.gsub!(index.unicode_moji_regex) do |moji|
       emoji = index.find_by_moji(moji)
-      %Q{:#{emoji['name']}:}
+      ":#{emoji['name']}:"
     end
     safe_string = safe_string.html_safe if safe_string.respond_to?(:html_safe)
 
