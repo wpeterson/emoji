@@ -615,6 +615,14 @@
 	"attribution": "Michael Day"
 },
 {
+	"moji": "😎",
+	"alts": ["smiling_face_with_sunglasses"],
+	"name": "sunglasses",
+	"name-ja": "サングラ",
+	"category": "faces",
+	"unicode": "1f60e"
+},
+{
 	"moji": "😏",
 	"alts": ["smirk_face"],
 	"name": "smirk",
